@@ -1,0 +1,20 @@
+def first_palindromic_string(words):
+    # Iterate through each word in the list
+    for word in words:
+        # Check if the word is the same forward and backward
+        if word == word[::-1]:
+            return word
+    # If no palindromic string is found, return an empty string
+    return ""
+
+# Example 1
+words1 = ["abc", "car", "ada", "racecar", "cool"]
+print(first_palindromic_string(words1))  # Output: "ada"
+
+# Example 2
+words2 = ["notapalindrome", "racecar"]
+print(first_palindromic_string(words2))  # Output: "racecar"
+
+# Example 3
+words3 = ["hello", "world"]
+print(first_palindromic_string(words3))  # Output: ""
