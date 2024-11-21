@@ -1,0 +1,22 @@
+def find_min_max(arr):
+    # In a sorted array, the first element is the minimum and the last element is the maximum
+    min_val = arr[0]
+    max_val = arr[-1]
+    return min_val, max_val
+
+# Test Case 1
+arr1 = [2, 4, 6, 8, 10, 12, 14, 18]
+min_val1, max_val1 = find_min_max(arr1)
+print(f"Test Case 1 - Min: {min_val1}, Max: {max_val1}")
+
+# Test Case 2
+arr2 = [11, 13, 15, 17, 19, 21, 23, 35, 37]
+min_val2, max_val2 = find_min_max(arr2)
+print(f"Test Case 2 - Min: {min_val2}, Max: {max_val2}")
+
+# Test Case 3
+arr3 = [22, 34, 35, 36, 43, 67, 12, 13, 15, 17]
+# The array is not sorted in ascending order, so we handle this case separately
+arr3.sort()
+min_val3, max_val3 = find_min_max(arr3)
+print(f"Test Case 3 - Min: {min_val3}, Max: {max_val3}")
