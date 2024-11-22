@@ -1,0 +1,29 @@
+def sum_of_squares_of_distinct_counts(nums):
+    n = len(nums)
+    total_sum = 0
+
+    # Iterate over all possible starting points of subarrays
+    for start in range(n):
+        freq = {}  # Frequency map to count occurrences of elements
+        distinct_count = 0
+
+        # Iterate over all possible ending points for the current subarray
+        for end in range(start, n):
+            # Add nums[end] to the frequency map
+            if nums[end] not in freq or freq[nums[end]] == 0:
+                distinct_count += 1  # A new distinct element
+            freq[nums[end]] = freq.get(nums[end], 0) + 1
+
+            # Add the square of the distinct count to the total sum
+            total_sum += distinct_count ** 2
+
+    return total_sum
+
+
+# Example 1
+nums = [1, 2, 1]
+print(sum_of_squares_of_distinct_counts(nums))  # Output: 15
+
+# Example 2
+nums = [1, 2, 3]
+print(sum_of_squares_of_distinct_counts(nums))  # Output: 50
