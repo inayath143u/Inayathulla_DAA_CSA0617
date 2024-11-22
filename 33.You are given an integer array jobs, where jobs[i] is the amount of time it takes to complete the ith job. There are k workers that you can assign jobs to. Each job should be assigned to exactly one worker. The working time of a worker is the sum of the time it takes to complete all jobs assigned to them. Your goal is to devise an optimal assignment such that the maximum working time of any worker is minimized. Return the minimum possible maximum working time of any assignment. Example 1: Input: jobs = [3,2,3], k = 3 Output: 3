@@ -1,0 +1,36 @@
+def canAssign(jobs, k, max_time):
+    # Helper function to check if we can assign jobs such that no worker has more than max_time work
+    workers = [0] * k  # Array to keep track of the work time for each worker
+
+    def assign(i):
+        if i == len(jobs):
+            return True  # All jobs have been assigned
+        for j in range(k):
+            if workers[j] + jobs[i] <= max_time:  # Assign the job to worker j if it doesn't exceed max_time
+                workers[j] += jobs[i]
+                if assign(i + 1):  # Try assigning the next job
+                    return True
+                workers[j] -= jobs[i]  # Backtrack if not possible
+            if workers[j] == 0:  # Optimization: if the worker is empty and failed, other empty workers will also fail
+                break
+        return False
+
+    return assign(0)
+
+def minimumTime(jobs, k):
+    # Binary search to find the minimum maximum work time
+    left, right = max(jobs), sum(jobs)
+    
+    while left < right:
+        mid = (left + right) // 2
+        if canAssign(jobs, k, mid):
+            right = mid  # Try to minimize the maximum working time
+        else:
+            left = mid + 1  # Increase the max time
+    
+    return left
+
+# Example test case
+jobs = [3, 2, 3]
+k = 3
+print(minimumTime(jobs, k))  # Output: 3
